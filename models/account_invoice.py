@@ -12,6 +12,7 @@ tipo_destino=['800 INTERNACIONAL','800 NACIONAL','LD INTERNACIONAL','LD INTERNAC
 class AccountInvoice(models.Model):
     _name = 'account.invoice'
     _inherit = 'account.invoice'
+    invoice_phone = fields.Boolean(string='Factura Telefónica', default=False)
 
     @api.model
     def _getlinessubscription(self):

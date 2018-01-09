@@ -11,6 +11,7 @@
     'website': "http://www.xmarts.com",
     'depends': ['base','sale','purchase','stock'],
     'data': [
+        'views/templates.xml',
         'reports/report_invoice.xml'
     ]
 }
