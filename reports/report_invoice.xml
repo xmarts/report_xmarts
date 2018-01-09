@@ -1,5 +1,429 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+
+
+    <!--TIPO DE DESTINO-->
+     <template id="report_servicios_cdr">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <br/>
+        <table style=" border:3px solid #003399; width:100%;font-family:Arial, sans-serif;font-size:12pt;  ">
+           <tr>
+             <td style="width:50%;">
+                <b t-field="o.partner_id.name"/><br/>
+                 <b t-field="o.partner_id.ref"/>
+             </td>
+               <td style="width:50%;font-size:14pt;">
+                    <b>Detalle por tipo de destino</b>
+             </td>
+           </tr>
+        </table><br/>
+            <table  style=" border:0px solid white; width:100%;  ">
+                    <tr>
+                        <td style="background:#1c6fba;width:37%;">
+                            <b style="color:white;">TIPO DE TRAFICO</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">LARGA DISTANCIA</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">LOCAL</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">CELULAR</b>
+                        </td>
+
+                    </tr>
+            </table>
+            <table  style=" border:0px solid white; width:100%;  ">
+                    <tr>
+                        <td style="background:#1c6fba;width:15%;">
+                            <b style="color:white;">Número</b>
+                        </td>
+                        <td style="background:#1c6fba;width:22%;">
+                            <b style="color:white;">Tipo de Destino</b>
+                        </td>
+
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                    </tr>
+                <t t-set="line" t-value="o._getlinessubscription()" />
+                    <tr  t-foreach="line" t-as="l" style="color:white;">
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['numeroa']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['tipodestino']"/>
+                        </td>
+
+                        <!--LARGA DISTANCIA-->
+                        <t t-if="l['tipotrafico'] == 'LARGA DISTANCIA'">
+                            <td style="background:#aac9e5;">
+                                 <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                        </t>
+                        <!--LOCAL-->
+                        <t t-if="l['tipotrafico'] == 'LOCAL'">
+
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                             <td style="background:#aac9e5;">
+                                <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                        </t>
+                        <!--CELULAR-->
+                        <t t-if="l['tipotrafico'] == 'CELULAR'">
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                        </t>
+
+                    </tr>
+                </table>
+         </t>
+    </template>
+    <!--TIPO DE POBLACION-->
+     <template id="report_poblacion_cdr">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <br/>
+        <table style=" border:3px solid #003399; width:100%;font-family:Arial, sans-serif;font-size:12pt;  ">
+           <tr>
+             <td style="width:50%;">
+                <b t-field="o.partner_id.name"/><br/>
+                 <b t-field="o.partner_id.ref"/>
+             </td>
+               <td style="width:50%;font-size:14pt;">
+                    <b>Detalle por Población</b>
+             </td>
+           </tr>
+        </table><br/>
+            <table  style=" border:0px solid white; width:100%;  ">
+                    <tr>
+                        <td style="background:#1c6fba;width:37%;">
+                            <b style="color:white;">TIPO DE TRAFICO</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">LARGA DISTANCIA</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">LOCAL</b>
+                        </td>
+                        <td style="background:#1c6fba;width:21%;">
+                            <b style="color:white;">CELULAR</b>
+                        </td>
+
+                    </tr>
+            </table>
+            <table  style=" border:0px solid white; width:100%;  ">
+                    <tr>
+                        <td style="background:#1c6fba;width:15%;">
+                            <b style="color:white;">Número</b>
+                        </td>
+                        <td style="background:#1c6fba;width:22%;">
+                            <b style="color:white;">Población</b>
+                        </td>
+
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Núm</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                            <b style="color:white;">Min</b>
+                        </td>
+                        <td style="background:#1c6fba;width:7%;">
+                           <b style="color:white;">Imp</b>
+                        </td>
+                    </tr>
+                <t t-set="line" t-value="o._getlinespoblacion()" />
+                    <tr  t-foreach="line" t-as="l" style="color:white;">
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['numeroa']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['poblacion']"/>
+                        </td>
+
+                        <!--LARGA DISTANCIA-->
+                        <t t-if="l['tipotrafico'] == 'LARGA DISTANCIA'">
+                            <td style="background:#aac9e5;">
+                                 <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                        </t>
+                        <!--LOCAL-->
+                        <t t-if="l['tipotrafico'] == 'LOCAL'">
+
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                             <td style="background:#aac9e5;">
+                                <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                        </t>
+                        <!--CELULAR-->
+                        <t t-if="l['tipotrafico'] == 'CELULAR'">
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span>0.00</span>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['count']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['min']"/>
+                            </td>
+                            <td style="background:#aac9e5;">
+                                <span t-esc="l['imp']"/>
+                            </td>
+                        </t>
+
+                    </tr>
+                </table>
+         </t>
+    </template>
+    <!--TIPO DE NUMERO-->
+     <template id="report_numero_cdr">
+        <t t-foreach="docs" t-as="o">
+            <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+            <br/>
+        <table style=" border:3px solid #003399; width:100%;font-family:Arial, sans-serif;font-size:12pt;  ">
+           <tr>
+             <td style="width:50%;">
+                <b t-field="o.partner_id.name"/><br/>
+                 <b t-field="o.partner_id.ref"/>
+             </td>
+               <td style="width:50%;font-size:14pt;">
+                    <b>Detalle por Número</b>
+             </td>
+           </tr>
+        </table><br/>
+
+            <table  style=" border:0px solid white; width:100%;  ">
+                    <tr>
+                        <td style="background:#1c6fba;width:20%;">
+                            <b style="color:white;">Número</b>
+                        </td>
+                        <td style="background:#1c6fba;width:20%;">
+                            <b style="color:white;">Fecha</b>
+                        </td>
+
+                        <td style="background:#1c6fba;width:20%;">
+                            <b style="color:white;">Destino</b>
+                        </td>
+                        <td style="background:#1c6fba;width:10%;">
+                            <b style="color:white;">No. Destino</b>
+                        </td>
+                        <td style="background:#1c6fba;width:10%;">
+                           <b style="color:white;">Duración</b>
+                        </td>
+                        <td style="background:#1c6fba;width:10%;">
+                            <b style="color:white;">Price</b>
+                        </td>
+                        <td style="background:#1c6fba;width:10%;">
+                            <b style="color:white;">Total</b>
+                        </td>
+
+                    </tr>
+                <t t-set="line" t-value="o._getlinesnumero()" />
+                    <tr  t-foreach="line" t-as="l" style="color:white;">
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['numeroa']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['fecha']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['poblacion']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['numerob']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['min']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['tarifa']"/>
+                        </td>
+                        <td style="background:#aac9e5;">
+                            <span t-esc="l['imp']"/>
+                        </td>
+
+                    </tr>
+                </table>
+         </t>
+    </template>
     <!---header and footer-->
 <template id="web.external_layout_boxed">
         <div class="header o_boxed_header">
@@ -203,7 +627,11 @@
                     <p t-if="o.fiscal_position_id.note">
                         <span t-field="o.fiscal_position_id.note"/>
                     </p>
+                    <t t-call="report_xmarts.report_servicios_cdr"/>
+                    <t t-call="report_xmarts.report_poblacion_cdr"/>
+                    <t t-call="report_xmarts.report_numero_cdr"/>
                 </div>
+
             </t>
         </template>
 
@@ -340,6 +768,7 @@
             </t>
         </xpath>
     </template>
+
 
 
 

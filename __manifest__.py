@@ -9,7 +9,7 @@
     """,
     'author': "Xmarts, Nayeli Valencia Díaz",
     'website': "http://www.xmarts.com",
-    'depends': ['base'],
+    'depends': ['base','sale','purchase','stock'],
     'data': [
         'reports/report_invoice.xml'
     ]
