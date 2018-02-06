@@ -628,9 +628,13 @@
                         <span t-field="o.fiscal_position_id.note"/>
                     </p>
                     <t t-if="o.invoice_phone == True">
-                        <t t-call="report_xmarts.report_servicios_cdr"/>
-                        <t t-call="report_xmarts.report_poblacion_cdr"/>
-                        <t t-call="report_xmarts.report_numero_cdr"/>
+                        <t t-if="o.origin != False">
+                            <t t-if="o.type != 'out_refund'">
+                                <t t-call="report_xmarts.report_servicios_cdr"/>
+                                <t t-call="report_xmarts.report_poblacion_cdr"/>
+                                <t t-call="report_xmarts.report_numero_cdr"/>
+                            </t>
+                        </t>
                     </t>
                 </div>
 
